@@ -29,7 +29,7 @@ module DataSift
 
 			begin
 				# Make the call
-				res = RestClient.post(url, params, { 'Auth' => user.username + ':' + user.api_key, 'User-Agent' => user_agent })
+				res = RestClient::Request.execute(:method => :post, :url => url, :payload => params, :headers => { 'Auth' => user.username + ':' + user.api_key, 'User-Agent' => user_agent }, :ssl_version => 'TLSv1')
 
 				# Success
 				retval['response_code'] = res.code
